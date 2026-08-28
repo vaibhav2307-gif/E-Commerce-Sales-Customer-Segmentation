@@ -9,6 +9,9 @@ seaborn
 # Machine learning
 scikit-learn
 
+# UCI dataset access
+ucimlrepo
+
 # Notebook environment
 jupyter
 ipykernel
