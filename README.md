@@ -2,11 +2,11 @@
 
 A portfolio-ready data analytics and machine learning project focused on understanding e-commerce sales, customer purchasing behavior, and actionable customer segments.
 
-> **Project status:** Day 1 — Project setup. Analysis and model results will be added incrementally as the actual dataset is inspected and validated.
+> **Project status:** Day 2 — Dataset selected and data-understanding workflow added. Cleaning and deeper analysis will follow only after the dataset has been inspected.
 
 ## Problem Statement
 
-E-commerce businesses generate large volumes of transaction data but need a structured way to understand sales performance, customer behavior, and opportunities for retention and targeted marketing. This project will turn transaction-level data into reproducible analysis and customer segmentation insights without fabricating results.
+E-commerce businesses generate large volumes of transaction data but need a structured way to understand sales performance, customer behavior, and opportunities for retention and targeted marketing. This project turns transaction-level data into reproducible analysis and customer segmentation insights without fabricating results.
 
 ## Objectives
 
@@ -38,6 +38,7 @@ Actual findings, metrics, segment names, and recommendations will be based only 
 - Seaborn
 - Scikit-learn
 - Jupyter Notebook
+- `ucimlrepo` for reproducible access to the selected UCI dataset
 - Power BI (where supported by the available data and tooling)
 - Git / GitHub
 
@@ -56,9 +57,28 @@ Actual findings, metrics, segment names, and recommendations will be based only 
 
 ## Dataset
 
-The dataset has **not yet been added or assumed**. Day 2 will inspect the repository and identify whether a suitable real e-commerce dataset is already available. If no dataset is available, a suitable public dataset will be selected before analysis begins.
+The selected dataset is **UCI Online Retail (dataset ID 352)**. UCI describes it as a transactional dataset for a UK-based, registered, non-store online retailer covering 01/12/2010 through 09/12/2011. The source reports 541,909 instances and the fields used by this project include invoice number, product code, description, quantity, invoice date, unit price, customer ID, and country. citeturn0search0
 
-No synthetic or fabricated data will be presented as real data.
+The original workbook is approximately 22.6 MB, so it is intentionally not committed to GitHub. The Day 2 notebook retrieves it through `ucimlrepo`. See [`data/DATASET.md`](data/DATASET.md) for provenance, citation, licensing, and reproduction instructions.
+
+No synthetic or fabricated data is presented as real data.
+
+## Day 2 Data Understanding
+
+The repository now contains `notebooks/01_data_understanding.ipynb`. The notebook inspects:
+
+- row and column counts
+- data types
+- missing values
+- duplicate records
+- unique-value cardinality
+- numeric and categorical fields
+- date/time candidates
+- key customer/product/invoice fields
+- country distribution
+- date parsing and date range
+
+Cancellations, non-positive quantities/prices, and customer-ID missingness are deliberately left for the Day 3 cleaning stage rather than silently removed during initial inspection.
 
 ## Repository Structure
 
@@ -66,8 +86,10 @@ No synthetic or fabricated data will be presented as real data.
 .
 ├── data/
 │   ├── raw/
-│   └── processed/
+│   ├── processed/
+│   └── DATASET.md
 ├── notebooks/
+│   └── 01_data_understanding.ipynb
 ├── src/
 ├── dashboard/
 ├── images/
@@ -88,7 +110,7 @@ No synthetic or fabricated data will be presented as real data.
 
 ## Development Plan
 
-This repository is being developed in 14 deliberate stages. Each stage will add a meaningful project improvement, verify the result, and then stop for review before the next stage begins.
+This repository is being developed in 14 deliberate stages. Each stage adds a meaningful project improvement, verifies the result, and then stops for review before the next stage begins.
 
 | Day | Focus |
 |---:|---|
@@ -105,4 +127,3 @@ This repository is being developed in 14 deliberate stages. Each stage will add 
 | 12 | Power BI dashboard support |
 | 13 | Documentation and portfolio polish |
 | 14 | Final quality check |
-```
