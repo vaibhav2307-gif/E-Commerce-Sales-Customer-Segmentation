@@ -20,3 +20,7 @@
 UCI Machine Learning Repository — Online Retail, dataset ID 352.
 
 https://archive.ics.uci.edu/dataset/352/online-retail
+
+## Day 2 status
+
+Ready for Day 3 data cleaning after the user requests continuation.
