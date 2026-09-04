@@ -2,7 +2,7 @@
 
 A portfolio-ready data analytics and machine learning project focused on understanding e-commerce sales, customer purchasing behavior, and actionable customer segments.
 
-> **Project status:** Day 5 — Expanded EDA with time, geography, customer behavior, and product analysis. Business insights will be documented in Day 6 from observed evidence.
+> **Project status:** Day 6 — EDA business-insight framework added. Numerical findings remain runtime-derived and are never fabricated.
 
 ## Problem Statement
 
@@ -27,18 +27,21 @@ The project uses the **UCI Online Retail** dataset (dataset ID 352), a transacti
 
 No synthetic or fabricated data is presented as real data.
 
-## Day 5 — Expanded EDA
+## Analysis Completed
 
-`notebooks/03_eda_part2.ipynb` adds:
+### Days 1–5
 
-- Monthly revenue, order, and customer trends
-- Weekday purchasing patterns
-- Country-level revenue, order, and customer comparisons
-- Customer-level revenue, orders, and units
-- Product performance by stock code and description
-- Customer orders-versus-revenue relationship
+The project now includes reproducible data understanding, cleaning, and sales/product/customer EDA. The EDA covers core sales KPIs, order-value and quantity distributions, product performance, monthly trends, weekday behavior, geography, customer purchasing behavior, and customer orders-versus-revenue relationships.
 
-The dataset does not provide a formal product-category field, so category-level conclusions are not fabricated.
+### Day 6 — Business Insights
+
+`reports/day6_business_insights.md` establishes an evidence-first framework using:
+
+**Finding → Evidence → Business Meaning → Recommendation**
+
+The framework covers sales timing, product contribution, customer purchasing behavior, and geographic concentration. Numerical findings are intentionally not hard-coded because the source dataset is retrieved at runtime. This prevents unsupported statistics from entering the portfolio documentation.
+
+The source dataset has no formal product-category field, so category-level conclusions are not claimed.
 
 ## Repository Structure
 
@@ -59,6 +62,7 @@ The dataset does not provide a formal product-category field, so category-level 
 ├── dashboard/
 ├── images/
 ├── reports/
+│   └── day6_business_insights.md
 ├── README.md
 ├── requirements.txt
 └── .gitignore
