@@ -1,0 +1,48 @@
+// Day 12 — Core Power BI measures
+// Table name: Sales
+// These measures calculate values from the imported dataset; no result is hard-coded.
+
+Total Revenue =
+SUM ( Sales[revenue] )
+
+Total Orders =
+DISTINCTCOUNT ( Sales[invoice_no] )
+
+Total Customers =
+DISTINCTCOUNT ( Sales[customer_id] )
+
+Total Units =
+SUM ( Sales[quantity] )
+
+Average Order Value =
+DIVIDE ( [Total Revenue], [Total Orders] )
+
+Revenue per Customer =
+DIVIDE ( [Total Revenue], [Total Customers] )
+
+// Optional time-intelligence measures after creating Calendar[Date]
+Revenue Previous Month =
+CALCULATE (
+    [Total Revenue],
+    DATEADD ( 'Calendar'[Date], -1, MONTH )
+)
+
+Revenue MoM % =
+DIVIDE (
+    [Total Revenue] - [Revenue Previous Month],
+    [Revenue Previous Month]
+)
+
+// Customer-segmentation measures require a validated CustomerSegments table
+// containing one row per eligible customer and the Python-generated segment label.
+Segmented Customers =
+DISTINCTCOUNT ( CustomerSegments[customer_id] )
+
+Average Customer Monetary =
+AVERAGE ( CustomerSegments[monetary] )
+
+Average Customer Frequency =
+AVERAGE ( CustomerSegments[frequency] )
+
+Average Customer Recency =
+AVERAGE ( CustomerSegments[recency] )
