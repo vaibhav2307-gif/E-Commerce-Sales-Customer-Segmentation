@@ -2,7 +2,7 @@
 
 A portfolio-ready data analytics and machine learning project focused on understanding e-commerce sales, customer purchasing behavior, and actionable customer segments.
 
-> **Project status:** Day 6 — EDA business-insight framework added. Numerical findings remain runtime-derived and are never fabricated.
+> **Project status:** Day 12 — Power BI dashboard specification and DAX measures added. Numerical findings remain runtime-derived and are never fabricated.
 
 ## Problem Statement
 
@@ -16,10 +16,11 @@ E-commerce businesses generate large volumes of transaction data but need a stru
 - Measure customer value with RFM analysis where required fields are available.
 - Build and evaluate K-Means customer segmentation when supported by the data.
 - Translate evidence into practical business recommendations.
+- Present the validated analysis through a Power BI dashboard design.
 
 ## Technology Stack
 
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter, `ucimlrepo`, Power BI where appropriate, and Git/GitHub.
+Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter, `ucimlrepo`, Power BI, and Git/GitHub.
 
 ## Dataset
 
@@ -31,17 +32,25 @@ No synthetic or fabricated data is presented as real data.
 
 ### Days 1–5
 
-The project now includes reproducible data understanding, cleaning, and sales/product/customer EDA. The EDA covers core sales KPIs, order-value and quantity distributions, product performance, monthly trends, weekday behavior, geography, customer purchasing behavior, and customer orders-versus-revenue relationships.
+The project includes reproducible data understanding, cleaning, and sales/product/customer EDA covering core sales KPIs, order-value and quantity distributions, product performance, monthly trends, weekday behavior, geography, customer purchasing behavior, and customer orders-versus-revenue relationships.
 
 ### Day 6 — Business Insights
 
-`reports/day6_business_insights.md` establishes an evidence-first framework using:
+`reports/day6_business_insights.md` establishes an evidence-first framework using **Finding → Evidence → Business Meaning → Recommendation**. Numerical findings are intentionally generated from executed notebook outputs rather than hard-coded.
 
-**Finding → Evidence → Business Meaning → Recommendation**
+### Days 7–10 — Customer Segmentation
 
-The framework covers sales timing, product contribution, customer purchasing behavior, and geographic concentration. Numerical findings are intentionally not hard-coded because the source dataset is retrieved at runtime. This prevents unsupported statistics from entering the portfolio documentation.
+The project implements RFM analysis, transparent clustering preparation, K-Means evaluation, and data-driven business-facing segment labels. Segment results are generated at runtime from the real UCI data.
 
-The source dataset has no formal product-category field, so category-level conclusions are not claimed.
+### Day 11 — Final Analysis & Visuals
+
+`notebooks/08_final_analysis.ipynb` consolidates executive KPIs, revenue trends, country/product performance, customer revenue concentration, and the final RFM/K-Means segmentation view.
+
+### Day 12 — Power BI
+
+`dashboard/POWER_BI_GUIDE.md` defines the Power BI data model, report pages, visual layout, slicers, interaction design, and data-integrity rules. `dashboard/measures.dax` contains reusable DAX measures for sales and customer metrics.
+
+A `.pbix` binary is not fabricated or claimed as generated; it should be built in Power BI Desktop from the real UCI source and validated Python outputs.
 
 ## Repository Structure
 
@@ -55,14 +64,25 @@ The source dataset has no formal product-category field, so category-level concl
 │   ├── 01_data_understanding.ipynb
 │   ├── 02_data_cleaning.ipynb
 │   ├── 03_eda.ipynb
-│   └── 03_eda_part2.ipynb
+│   ├── 03_eda_part2.ipynb
+│   ├── 04_rfm_analysis.ipynb
+│   ├── 05_clustering_preparation.ipynb
+│   ├── 06_kmeans_clustering.ipynb
+│   ├── 07_segment_interpretation.ipynb
+│   └── 08_final_analysis.ipynb
 ├── src/
 │   ├── data_cleaning.py
-│   └── eda.py
+│   ├── eda.py
+│   ├── rfm_analysis.py
+│   ├── clustering_prep.py
+│   ├── kmeans_clustering.py
+│   ├── segment_interpretation.py
+│   └── final_analysis.py
 ├── dashboard/
+│   ├── POWER_BI_GUIDE.md
+│   └── measures.dax
 ├── images/
 ├── reports/
-│   └── day6_business_insights.md
 ├── README.md
 ├── requirements.txt
 └── .gitignore
@@ -75,6 +95,7 @@ The source dataset has no formal product-category field, so category-level concl
 - Avoid hard-coded results.
 - Preserve raw data separately and avoid committing unnecessarily large source files.
 - Use fixed random states for stochastic ML steps where appropriate.
+- Keep Power BI measures dynamic and aligned with the Python analytical definitions.
 
 ## 14-Day Development Plan
 
