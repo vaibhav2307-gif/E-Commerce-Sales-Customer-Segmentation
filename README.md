@@ -2,55 +2,96 @@
 
 A portfolio-ready data analytics and machine learning project focused on understanding e-commerce sales, customer purchasing behavior, and actionable customer segments.
 
-> **Project status:** Day 12 — Power BI dashboard specification and DAX measures added. Numerical findings remain runtime-derived and are never fabricated.
+> **Project status:** Day 13 — documentation and portfolio polish completed. Numerical findings remain runtime-derived and are never fabricated.
 
-## Problem Statement
+## Business Problem
 
-E-commerce businesses generate large volumes of transaction data but need a structured way to understand sales performance, customer behavior, and opportunities for retention and targeted marketing. This project turns transaction-level data into reproducible analysis and customer segmentation insights without fabricating results.
+E-commerce transaction data can reveal where revenue is generated, how customers purchase, which products and markets contribute most, and how customer value differs across the base. This project builds a reproducible analytics-to-segmentation workflow that turns transaction-level data into evidence-based business recommendations.
 
-## Objectives
+## Project Objectives
 
-- Validate and understand the real e-commerce transaction data.
-- Clean and prepare data using documented, reproducible decisions.
-- Analyze sales, products, customers, trends, and geographic performance where supported.
-- Measure customer value with RFM analysis where required fields are available.
-- Build and evaluate K-Means customer segmentation when supported by the data.
-- Translate evidence into practical business recommendations.
-- Present the validated analysis through a Power BI dashboard design.
-
-## Technology Stack
-
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter, `ucimlrepo`, Power BI, and Git/GitHub.
+- Validate and understand a real e-commerce transaction dataset.
+- Apply transparent, reproducible data-cleaning decisions.
+- Analyze sales, products, customers, time patterns, and geography.
+- Build customer-level RFM measures.
+- Prepare RFM features for distance-based clustering.
+- Evaluate K-Means cluster counts and create customer segments.
+- Translate model output into transparent business archetypes.
+- Provide a Power BI-ready dashboard specification and dynamic DAX measures.
 
 ## Dataset
 
-The project uses the **UCI Online Retail** dataset (dataset ID 352), a transactional dataset for a UK-based registered non-store online retailer. The original workbook is intentionally not committed because of its size; notebooks retrieve it reproducibly with `ucimlrepo`. See [`data/DATASET.md`](data/DATASET.md) for provenance and citation.
+The project uses the **UCI Online Retail** dataset (dataset ID 352), a transactional dataset for a UK-based registered non-store online retailer. The original workbook is intentionally not committed because of its size; notebooks retrieve it reproducibly with `ucimlrepo`. Full provenance and citation details are documented in [`data/DATASET.md`](data/DATASET.md).
 
 No synthetic or fabricated data is presented as real data.
 
-## Analysis Completed
+## End-to-End Workflow
 
-### Days 1–5
+```text
+UCI Online Retail
+       │
+       ▼
+Data understanding
+       │
+       ▼
+Conservative cleaning
+       │
+       ▼
+Sales / product / customer EDA
+       │
+       ▼
+RFM customer metrics
+       │
+       ▼
+Skew-aware preprocessing + scaling
+       │
+       ▼
+K-Means evaluation
+       │
+       ▼
+Relative business segment labels
+       │
+       ├──────────────► Final analysis & visuals
+       │
+       └──────────────► Power BI dashboard specification
+```
 
-The project includes reproducible data understanding, cleaning, and sales/product/customer EDA covering core sales KPIs, order-value and quantity distributions, product performance, monthly trends, weekday behavior, geography, customer purchasing behavior, and customer orders-versus-revenue relationships.
+## Analysis Highlights
 
-### Day 6 — Business Insights
+### Sales analytics
 
-`reports/day6_business_insights.md` establishes an evidence-first framework using **Finding → Evidence → Business Meaning → Recommendation**. Numerical findings are intentionally generated from executed notebook outputs rather than hard-coded.
+The EDA layer covers executive sales KPIs, order-value and quantity distributions, product performance, monthly trends, weekday behavior, country performance, customer purchasing behavior, and customer orders-versus-revenue relationships.
 
-### Days 7–10 — Customer Segmentation
+### RFM segmentation
 
-The project implements RFM analysis, transparent clustering preparation, K-Means evaluation, and data-driven business-facing segment labels. Segment results are generated at runtime from the real UCI data.
+Customer Recency, Frequency and Monetary value are calculated from the validated positive-sales analytical view. RFM features are transformed only when observed skewness exceeds the documented threshold, then standardized before K-Means clustering.
 
-### Day 11 — Final Analysis & Visuals
+### K-Means segmentation
 
-`notebooks/08_final_analysis.ipynb` consolidates executive KPIs, revenue trends, country/product performance, customer revenue concentration, and the final RFM/K-Means segmentation view.
+Candidate cluster counts from **k=2 through k=8** are evaluated with inertia and silhouette score. The reproducible workflow uses the highest observed silhouette candidate as the initial selected `k`. Cluster IDs are then translated into relative, descriptive business archetypes using the observed cluster profiles.
 
-### Day 12 — Power BI
+### Business interpretation
 
-`dashboard/POWER_BI_GUIDE.md` defines the Power BI data model, report pages, visual layout, slicers, interaction design, and data-integrity rules. `dashboard/measures.dax` contains reusable DAX measures for sales and customer metrics.
+Segment actions are framed as hypotheses rather than measured campaign effects. Examples include protecting high-value engaged customers, nurturing developing customers, improving basket value for frequent lower-value customers, and testing win-back activity for high-value customers with deteriorated recency.
 
-A `.pbix` binary is not fabricated or claimed as generated; it should be built in Power BI Desktop from the real UCI source and validated Python outputs.
+### Power BI
+
+The `dashboard/` folder contains the recommended report model, page layout, interaction design, and DAX measures. A `.pbix` file is not fabricated; the dashboard should be built and refreshed in Power BI Desktop using the real source and validated Python outputs.
+
+## Reproducibility & Integrity
+
+- Use the real UCI source dataset.
+- Keep business filters explicit; the cleaned dataset does not silently discard cancellations or non-sales rows.
+- Use the positive-sales view consistently for sales and customer-value analysis.
+- Do not hard-code numerical findings, rankings, cluster sizes, or segment assignments.
+- Use fixed random states for stochastic ML steps.
+- Do not infer product categories because the source dataset has no formal category field.
+- Do not claim causality, campaign lift, margin impact, or retention outcomes that the transaction data cannot measure.
+- The repository avoids committing the large raw workbook.
+
+## Technology Stack
+
+Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter, `ucimlrepo`, Power BI, DAX, and Git/GitHub.
 
 ## Repository Structure
 
@@ -88,29 +129,20 @@ A `.pbix` binary is not fabricated or claimed as generated; it should be built i
 └── .gitignore
 ```
 
-## Reproducibility Principles
-
-- Use the real source dataset; never fabricate analytical results.
-- Keep cleaning and business filters explicit.
-- Avoid hard-coded results.
-- Preserve raw data separately and avoid committing unnecessarily large source files.
-- Use fixed random states for stochastic ML steps where appropriate.
-- Keep Power BI measures dynamic and aligned with the Python analytical definitions.
-
 ## 14-Day Development Plan
 
-| Day | Focus |
-|---:|---|
-| 1 | Project setup and documentation |
-| 2 | Dataset and data understanding |
-| 3 | Data cleaning |
-| 4–5 | Exploratory data analysis |
-| 6 | Business insights |
-| 7 | RFM analysis |
-| 8 | Clustering preparation |
-| 9 | K-Means segmentation |
-| 10 | Segment interpretation |
-| 11 | Advanced visualization and final analysis |
-| 12 | Power BI dashboard support |
-| 13 | Documentation and portfolio polish |
-| 14 | Final quality check |
+| Day | Focus | Status |
+|---:|---|---|
+| 1 | Project setup and documentation | Complete |
+| 2 | Dataset and data understanding | Complete |
+| 3 | Data cleaning | Complete |
+| 4–5 | Exploratory data analysis | Complete |
+| 6 | Business insights | Complete |
+| 7 | RFM analysis | Complete |
+| 8 | Clustering preparation | Complete |
+| 9 | K-Means segmentation | Complete |
+| 10 | Segment interpretation | Complete |
+| 11 | Advanced visualization and final analysis | Complete |
+| 12 | Power BI dashboard support | Complete |
+| 13 | Documentation and portfolio polish | Complete |
+| 14 | Final quality check | Next |
