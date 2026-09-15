@@ -2,7 +2,7 @@
 
 A portfolio-ready data analytics and machine learning project focused on understanding e-commerce sales, customer purchasing behavior, and actionable customer segments.
 
-> **Project status:** Day 13 — documentation and portfolio polish completed. Numerical findings remain runtime-derived and are never fabricated.
+> **Project status:** Day 14 — final repository quality audit completed. Numerical findings remain runtime-derived and are never fabricated.
 
 ## Business Problem
 
@@ -145,4 +145,8 @@ Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Jupyter, `ucimlrepo`, 
 | 11 | Advanced visualization and final analysis | Complete |
 | 12 | Power BI dashboard support | Complete |
 | 13 | Documentation and portfolio polish | Complete |
-| 14 | Final quality check | Next |
+| 14 | Final quality check | Complete |
+
+## Final Audit
+
+The Day 14 audit is documented in [`reports/day14_final_audit.md`](reports/day14_final_audit.md). It checks repository integrity, data provenance, analytical/ML consistency, dashboard integrity, documentation, and the boundary between verified code/documentation and runtime-dependent numerical or Power BI artifacts.
